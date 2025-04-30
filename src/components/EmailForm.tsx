@@ -87,6 +87,9 @@ const EmailForm = () => {
     });
   };
 
+  // Check if both steps are completed
+  const bothStepsCompleted = step1Clicked && step2Clicked;
+
   return (
     <Card className="w-full max-w-md p-6 shadow-lg bg-white relative">
       <style>
@@ -209,7 +212,12 @@ const EmailForm = () => {
               
               <Button 
                 onClick={handleComplete}
-                className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+                disabled={!bothStepsCompleted}
+                className={`flex-1 ${
+                  bothStepsCompleted 
+                    ? 'bg-gray-400 hover:bg-gray-500' 
+                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                } text-white`}
               >
                 Submit
               </Button>
