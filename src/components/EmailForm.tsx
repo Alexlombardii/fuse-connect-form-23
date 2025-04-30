@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Check } from "lucide-react";
 
 const EmailForm = () => {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(true);
+  const [isCompleted, setIsCompleted] = useState(false);
   const { toast } = useToast();
 
   const validateEmail = (email: string) => {
@@ -53,8 +54,56 @@ const EmailForm = () => {
     return email.split('@')[0];
   };
 
+  const handleComplete = () => {
+    // Create confetti effect
+    const createConfetti = () => {
+      const confettiCount = 100;
+      const colors = ['#F8632C', '#FFD700', '#87CEFA', '#FF69B4', '#32CD32'];
+      
+      for (let i = 0; i < confettiCount; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        confetti.style.opacity = `${Math.random()}`;
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        
+        document.body.appendChild(confetti);
+        
+        setTimeout(() => {
+          document.body.removeChild(confetti);
+        }, 5000);
+      }
+    };
+    
+    createConfetti();
+    setIsCompleted(true);
+    toast({
+      title: "Thank You!",
+      description: "Your submission is complete.",
+    });
+  };
+
   return (
-    <Card className="w-full max-w-md p-6 shadow-lg bg-white">
+    <Card className="w-full max-w-md p-6 shadow-lg bg-white relative">
+      <style>
+        {`
+          .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            z-index: 1000;
+            animation: fall linear forwards;
+          }
+          
+          @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+          }
+        `}
+      </style>
+      
       {!isSubmitted ? (
         <form onSubmit={handleSubmit} className="space-y-4">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Connect with Fuse Energy</h2>
@@ -81,6 +130,26 @@ const EmailForm = () => {
             Continue
           </Button>
         </form>
+      ) : isCompleted ? (
+        <div className="space-y-6 text-center py-8">
+          <div className="flex justify-center mb-6">
+            <div className="bg-fuse text-white rounded-full p-4">
+              <Check size={48} />
+            </div>
+          </div>
+          <h2 className="text-2xl font-bold text-gray-800 mb-2">Thank You!</h2>
+          <p className="text-gray-600 mb-6">Your submission has been completed successfully.</p>
+          
+          <Button 
+            onClick={() => {
+              setIsSubmitted(false);
+              setIsCompleted(false);
+            }}
+            className="bg-fuse hover:bg-fuse-dark text-white"
+          >
+            Start Over
+          </Button>
+        </div>
       ) : (
         <div className="space-y-6">
           <div className="text-center">
@@ -123,13 +192,22 @@ const EmailForm = () => {
               </Button>
             </a>
             
-            <Button 
-              variant="outline"
-              onClick={() => setIsSubmitted(false)}
-              className="w-full border-fuse text-fuse hover:bg-fuse/10"
-            >
-              Go back
-            </Button>
+            <div className="flex gap-3 mt-6">
+              <Button 
+                variant="outline"
+                onClick={() => setIsSubmitted(false)}
+                className="flex-1 border-fuse text-fuse hover:bg-fuse/10"
+              >
+                Go back
+              </Button>
+              
+              <Button 
+                onClick={handleComplete}
+                className="flex-1 bg-fuse hover:bg-fuse-dark text-white"
+              >
+                Submit
+              </Button>
+            </div>
           </div>
         </div>
       )}
