@@ -85,7 +85,7 @@ const EmailForm = () => {
         <div className="space-y-6">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-gray-800 mb-2">Next Steps</h2>
-            <p className="text-gray-600 mb-6">Please choose one of the following options</p>
+            <p className="text-gray-600 mb-6">Please complete the following steps</p>
           </div>
           
           <div className="space-y-4">
@@ -98,7 +98,10 @@ const EmailForm = () => {
               <Button 
                 className="w-full bg-fuse hover:bg-fuse-dark text-white flex items-center justify-between"
               >
-                <span>Fill out the form</span>
+                <div className="flex items-center">
+                  <span className="bg-white text-fuse rounded-full h-6 w-6 flex items-center justify-center mr-2 font-bold text-sm">1</span>
+                  <span>Fill out the form</span>
+                </div>
                 <ExternalLink size={16} />
               </Button>
             </a>
@@ -112,7 +115,10 @@ const EmailForm = () => {
               <Button 
                 className="w-full bg-fuse hover:bg-fuse-dark text-white flex items-center justify-between"
               >
-                <span>Connect your home devices</span>
+                <div className="flex items-center">
+                  <span className="bg-white text-fuse rounded-full h-6 w-6 flex items-center justify-center mr-2 font-bold text-sm">2</span>
+                  <span>Connect your home devices</span>
+                </div>
                 <ExternalLink size={16} />
               </Button>
             </a>
