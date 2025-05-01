@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -220,7 +221,7 @@ const EmailForm = () => {
                 disabled={!bothStepsCompleted}
                 className={`flex-1 ${
                   bothStepsCompleted 
-                    ? 'border-fuse bg-white hover:bg-gray-100 text-fuse' 
+                    ? 'bg-white border-fuse text-fuse hover:bg-gray-100' 
                     : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                 }`}
               >
