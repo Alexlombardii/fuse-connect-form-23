@@ -195,7 +195,7 @@ const EmailForm = () => {
               >
                 <div className="flex items-center">
                   <span className="bg-white text-fuse rounded-full h-6 w-6 flex items-center justify-center mr-2 font-bold text-sm">2</span>
-                  <span>Connect your home devices</span>
+                  <span>Connect home energy devices</span>
                 </div>
                 <ExternalLink size={16} />
               </Button>
