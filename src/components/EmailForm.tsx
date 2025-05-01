@@ -184,7 +184,7 @@ const EmailForm = () => {
             </a>
             
             <a 
-              href={`http://fuseenergy.com/enode/${getUsername(email)}`}
+              href={`https://api.fuseenergy.com/api/v1/ev/link/${getUsername(email)}/redirect`}
               target="_blank" 
               rel="noopener noreferrer"
               className="block"
@@ -201,6 +201,12 @@ const EmailForm = () => {
               </Button>
             </a>
             
+            {bothStepsCompleted && (
+              <p className="text-sm text-gray-600 text-center mt-1 mb-3">
+                Please click the device button again to connect more devices!
+              </p>
+            )}
+            
             <div className="flex gap-3 mt-6">
               <Button 
                 variant="outline"
@@ -215,9 +221,9 @@ const EmailForm = () => {
                 disabled={!bothStepsCompleted}
                 className={`flex-1 ${
                   bothStepsCompleted 
-                    ? 'bg-gray-400 hover:bg-gray-500' 
+                    ? 'border-fuse bg-white hover:bg-gray-100 text-fuse' 
                     : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                } text-white`}
+                }`}
               >
                 Submit
               </Button>
