@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -203,7 +202,7 @@ const EmailForm = () => {
             
             {bothStepsCompleted && (
               <p className="text-sm text-gray-600 text-center mt-1 mb-3">
-                Please click the device button again to connect more devices!
+                Please click #2 again if you have more devices to connect!
               </p>
             )}
             
