@@ -1,10 +1,11 @@
 
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { useToast } from "@/components/ui/use-toast";
-import { ExternalLink, Check } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import EmailInputForm from "./email/EmailInputForm";
+import NextStepsForm from "./email/NextStepsForm";
+import CompletionMessage from "./email/CompletionMessage";
+import ConfettiStyles from "./email/ConfettiStyles";
 
 const EmailForm = () => {
   const [email, setEmail] = useState("");
@@ -51,11 +52,6 @@ const EmailForm = () => {
     });
   };
 
-  // Extract username from email (everything before @)
-  const getUsername = (email: string) => {
-    return email.split('@')[0];
-  };
-
   const handleComplete = () => {
     // Create confetti effect
     const createConfetti = () => {
@@ -87,149 +83,36 @@ const EmailForm = () => {
     });
   };
 
-  // Check if both steps are completed
-  const bothStepsCompleted = step1Clicked && step2Clicked;
-
   return (
     <Card className="w-full max-w-md p-6 shadow-lg bg-white relative">
-      <style>
-        {`
-          .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            z-index: 1000;
-            animation: fall linear forwards;
-          }
-          
-          @keyframes fall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-          }
-        `}
-      </style>
+      <ConfettiStyles />
       
       {!isSubmitted ? (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">Connect with Fuse Energy</h2>
-          <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium text-gray-700">
-              Email Address
-            </label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={`focus:border-fuse focus:ring-fuse ${!isValidEmail ? 'border-red-500' : ''}`}
-            />
-            {!isValidEmail && (
-              <p className="text-red-500 text-sm mt-1">Please enter a valid email address</p>
-            )}
-          </div>
-          <Button 
-            type="submit" 
-            className="w-full bg-fuse hover:bg-fuse-dark text-white"
-          >
-            Continue
-          </Button>
-        </form>
+        <EmailInputForm 
+          email={email} 
+          setEmail={setEmail} 
+          isValidEmail={isValidEmail} 
+          onSubmit={handleSubmit} 
+        />
       ) : isCompleted ? (
-        <div className="space-y-6 text-center py-8">
-          <div className="flex justify-center mb-6">
-            <div className="bg-fuse text-white rounded-full p-4">
-              <Check size={48} />
-            </div>
-          </div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-2">Thank You!</h2>
-          <p className="text-gray-600 mb-6">Your submission has been completed successfully.</p>
-          
-          <Button 
-            onClick={() => {
-              setIsSubmitted(false);
-              setIsCompleted(false);
-              setStep1Clicked(false);
-              setStep2Clicked(false);
-            }}
-            className="bg-fuse hover:bg-fuse-dark text-white"
-          >
-            Start Over
-          </Button>
-        </div>
+        <CompletionMessage 
+          onStartOver={() => {
+            setIsSubmitted(false);
+            setIsCompleted(false);
+            setStep1Clicked(false);
+            setStep2Clicked(false);
+          }} 
+        />
       ) : (
-        <div className="space-y-6">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">Next Steps</h2>
-            <p className="text-gray-600 mb-6">Please complete the following steps</p>
-          </div>
-          
-          <div className="space-y-4">
-            <a 
-              href="https://docs.google.com/forms/d/145aS0Va3Z02U5sBjkQcm54iLtRmsRROuj6y2E3M3GrA/edit"
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block"
-              onClick={() => setStep1Clicked(true)}
-            >
-              <Button 
-                className={`w-full ${step1Clicked ? 'bg-green-600 hover:bg-green-700' : 'bg-fuse hover:bg-fuse-dark'} text-white flex items-center justify-between`}
-              >
-                <div className="flex items-center">
-                  <span className="bg-white text-fuse rounded-full h-6 w-6 flex items-center justify-center mr-2 font-bold text-sm">1</span>
-                  <span>Fill out the form</span>
-                </div>
-                <ExternalLink size={16} />
-              </Button>
-            </a>
-            
-            <a 
-              href={`https://api.fuseenergy.com/api/v1/ev/link/${getUsername(email)}/redirect`}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block"
-              onClick={() => setStep2Clicked(true)}
-            >
-              <Button 
-                className={`w-full ${step2Clicked ? 'bg-green-600 hover:bg-green-700' : 'bg-fuse hover:bg-fuse-dark'} text-white flex items-center justify-between`}
-              >
-                <div className="flex items-center">
-                  <span className="bg-white text-fuse rounded-full h-6 w-6 flex items-center justify-center mr-2 font-bold text-sm">2</span>
-                  <span>Connect home energy devices</span>
-                </div>
-                <ExternalLink size={16} />
-              </Button>
-            </a>
-            
-            {bothStepsCompleted && (
-              <p className="text-sm text-gray-600 text-center mt-1 mb-3">
-                Please click #2 again if you have more devices to connect!
-              </p>
-            )}
-            
-            <div className="flex gap-3 mt-6">
-              <Button 
-                variant="outline"
-                onClick={() => setIsSubmitted(false)}
-                className="flex-1 border-fuse text-fuse hover:bg-fuse/10"
-              >
-                Go back
-              </Button>
-              
-              <Button 
-                onClick={handleComplete}
-                disabled={!bothStepsCompleted}
-                className={`flex-1 ${
-                  bothStepsCompleted 
-                    ? 'bg-white border-fuse text-fuse hover:bg-gray-100' 
-                    : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                }`}
-              >
-                Submit
-              </Button>
-            </div>
-          </div>
-        </div>
+        <NextStepsForm 
+          email={email}
+          step1Clicked={step1Clicked}
+          step2Clicked={step2Clicked}
+          setStep1Clicked={setStep1Clicked}
+          setStep2Clicked={setStep2Clicked}
+          onGoBack={() => setIsSubmitted(false)}
+          onComplete={handleComplete}
+        />
       )}
     </Card>
   );
