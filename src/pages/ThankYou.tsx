@@ -1,15 +1,10 @@
 
 import React from "react";
 import Logo from "@/components/Logo";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check } from "lucide-react";
 
 const ThankYou = () => {
-  const closeWindow = () => {
-    window.close();
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <header className="bg-white py-4 px-6 shadow-sm">
@@ -29,13 +24,6 @@ const ThankYou = () => {
               </div>
               <h2 className="text-2xl font-bold text-gray-800 mb-2">Thank You!</h2>
               <p className="text-gray-600 mb-10">Please return to the main page.</p>
-              
-              <Button 
-                onClick={closeWindow}
-                className="bg-fuse hover:bg-fuse-dark text-white mt-8"
-              >
-                Close Window
-              </Button>
             </div>
           </Card>
         </div>
@@ -43,7 +31,7 @@ const ThankYou = () => {
       
       <footer className="bg-white py-6 px-4 border-t border-gray-200">
         <div className="container mx-auto text-center text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} Fuse Energy. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Fuse Energy Supply Limited. All rights reserved.</p>
         </div>
       </footer>
     </div>
