@@ -30,8 +30,12 @@ const ThankYou = () => {
       </main>
       
       <footer className="bg-white py-6 px-4 border-t border-gray-200">
-        <div className="container mx-auto text-center text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} Fuse Energy Supply Limited. All rights reserved.</p>
+        <div className="container mx-auto text-center">
+          <p className="text-gray-500 text-sm mb-2">© {new Date().getFullYear()} Fuse Energy Supply Limited. All rights reserved.</p>
+          <p className="text-xs text-gray-400 italic">
+            Information covered under the <a href="https://www.fuseenergy.com/privacy-policy" target="_blank" rel="noopener noreferrer" className="underline hover:text-fuse transition-colors">privacy policy</a>. 
+            By default, any connections you make are strictly used for test purposes and will be deleted after 45 days.
+          </p>
         </div>
       </footer>
     </div>

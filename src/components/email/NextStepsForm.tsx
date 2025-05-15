@@ -74,10 +74,6 @@ const NextStepsForm = ({
           </Button>
         </a>
         
-        <p className="text-xs text-gray-400 italic text-center mt-1">
-          By default, any connections you make are strictly used for test purposes and will be deleted after 45 days.
-        </p>
-        
         {bothStepsCompleted && (
           <p className="text-sm text-gray-600 text-center mt-1 mb-3">
             Please click #2 again if you have more devices to connect!
