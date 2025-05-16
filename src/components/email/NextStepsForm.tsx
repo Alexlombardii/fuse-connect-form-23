@@ -27,6 +27,9 @@ const NextStepsForm = ({
     return email.split('@')[0];
   };
 
+  // Track if step 2 (form) has been clicked
+  const [formClicked, setFormClicked] = React.useState(false);
+
   // Check if both steps are completed
   const bothStepsCompleted = step1Clicked && step2Clicked;
 
@@ -61,10 +64,10 @@ const NextStepsForm = ({
           target="_blank" 
           rel="noopener noreferrer"
           className="block"
-          onClick={() => setStep1Clicked(true)}
+          onClick={() => setFormClicked(true)}
         >
           <Button 
-            className={`w-full bg-fuse hover:bg-fuse-dark text-white flex items-center justify-between`}
+            className={`w-full ${formClicked ? 'bg-green-600 hover:bg-green-700' : 'bg-fuse hover:bg-fuse-dark'} text-white flex items-center justify-between`}
           >
             <div className="flex items-center">
               <span className="bg-white text-fuse rounded-full h-6 w-6 flex items-center justify-center mr-2 font-bold text-sm">2</span>
