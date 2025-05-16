@@ -50,7 +50,7 @@ const NextStepsForm = ({
           >
             <div className="flex items-center">
               <span className="bg-white text-fuse rounded-full h-6 w-6 flex items-center justify-center mr-2 font-bold text-sm">1</span>
-              <span>Fill out the form</span>
+              <span>Click here to fill out the form</span>
             </div>
             <ExternalLink size={16} />
           </Button>
@@ -68,7 +68,7 @@ const NextStepsForm = ({
           >
             <div className="flex items-center">
               <span className="bg-white text-fuse rounded-full h-6 w-6 flex items-center justify-center mr-2 font-bold text-sm">2</span>
-              <span>Connect home energy devices</span>
+              <span>Click here to connect home devices</span>
             </div>
             <ExternalLink size={16} />
           </Button>
