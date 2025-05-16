@@ -39,7 +39,7 @@ const NextStepsForm = ({
       
       <div className="space-y-4">
         <a 
-          href="https://docs.google.com/forms/d/145aS0Va3Z02U5sBjkQcm54iLtRmsRROuj6y2E3M3GrA/edit"
+          href="https://platform-connect.arcadia.com/vu8LTRP3dqjGjVfdBxCd"
           target="_blank" 
           rel="noopener noreferrer"
           className="block"
@@ -50,6 +50,24 @@ const NextStepsForm = ({
           >
             <div className="flex items-center">
               <span className="bg-white text-fuse rounded-full h-6 w-6 flex items-center justify-center mr-2 font-bold text-sm">1</span>
+              <span>Click here and connect your utility account</span>
+            </div>
+            <ExternalLink size={16} />
+          </Button>
+        </a>
+        
+        <a 
+          href="https://docs.google.com/forms/d/145aS0Va3Z02U5sBjkQcm54iLtRmsRROuj6y2E3M3GrA/edit"
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="block"
+          onClick={() => setStep1Clicked(true)}
+        >
+          <Button 
+            className={`w-full ${step1Clicked ? 'bg-green-600 hover:bg-green-700' : 'bg-fuse hover:bg-fuse-dark'} text-white flex items-center justify-between`}
+          >
+            <div className="flex items-center">
+              <span className="bg-white text-fuse rounded-full h-6 w-6 flex items-center justify-center mr-2 font-bold text-sm">2</span>
               <span>Click here to fill out the form</span>
             </div>
             <ExternalLink size={16} />
@@ -67,7 +85,7 @@ const NextStepsForm = ({
             className={`w-full ${step2Clicked ? 'bg-green-600 hover:bg-green-700' : 'bg-fuse hover:bg-fuse-dark'} text-white flex items-center justify-between`}
           >
             <div className="flex items-center">
-              <span className="bg-white text-fuse rounded-full h-6 w-6 flex items-center justify-center mr-2 font-bold text-sm">2</span>
+              <span className="bg-white text-fuse rounded-full h-6 w-6 flex items-center justify-center mr-2 font-bold text-sm">3</span>
               <span>Click here to connect home devices</span>
             </div>
             <ExternalLink size={16} />

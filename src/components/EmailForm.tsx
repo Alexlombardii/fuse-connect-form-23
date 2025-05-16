@@ -14,6 +14,7 @@ const EmailForm = () => {
   const [isCompleted, setIsCompleted] = useState(false);
   const [step1Clicked, setStep1Clicked] = useState(false);
   const [step2Clicked, setStep2Clicked] = useState(false);
+  const [step3Clicked, setStep3Clicked] = useState(false);
   const { toast } = useToast();
 
   const validateEmail = (email: string) => {
@@ -101,15 +102,16 @@ const EmailForm = () => {
             setIsCompleted(false);
             setStep1Clicked(false);
             setStep2Clicked(false);
+            setStep3Clicked(false);
           }} 
         />
       ) : (
         <NextStepsForm 
           email={email}
           step1Clicked={step1Clicked}
-          step2Clicked={step2Clicked}
+          step2Clicked={step3Clicked}  // Note: We're mapping the new step3Clicked to step2Clicked in the props
           setStep1Clicked={setStep1Clicked}
-          setStep2Clicked={setStep2Clicked}
+          setStep2Clicked={setStep3Clicked}  // Same mapping here
           onGoBack={() => setIsSubmitted(false)}
           onComplete={handleComplete}
         />
