@@ -64,7 +64,7 @@ const NextStepsForm = ({
           onClick={() => setStep1Clicked(true)}
         >
           <Button 
-            className={`w-full ${step1Clicked ? 'bg-green-600 hover:bg-green-700' : 'bg-fuse hover:bg-fuse-dark'} text-white flex items-center justify-between`}
+            className={`w-full bg-fuse hover:bg-fuse-dark text-white flex items-center justify-between`}
           >
             <div className="flex items-center">
               <span className="bg-white text-fuse rounded-full h-6 w-6 flex items-center justify-center mr-2 font-bold text-sm">2</span>
